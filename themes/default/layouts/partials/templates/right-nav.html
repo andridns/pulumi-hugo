@@ -1,0 +1,32 @@
+{{ with .File }}
+    {{ if not $.Page.Params.no_on_this_page }}
+        <div class="on-this-page">
+            <h5 class="no-anchor">
+                <a href="#">On this page</a>
+            </h5>
+            <ul class="text-sm">
+                {{/* This will be populated dynamically with all H2s and H3s on the page; see assets/js/main.js */}}
+            </ul>
+        </div>
+    {{ end }}
+{{ end }}
+
+
+<h5 class="mt-2">Source code</h5>
+<div class="inline-flex items-center text-sm">
+    <i class="fab fa-github text-lg mr-1.5"></i>
+    <span><a class="text-blue-700" href="https://github.com/pulumi/templates" target="_blank" rel="noopener noreferrer">pulumi/templates</a></span>
+    <span><i class="text-blue-700 fas fa-external-link-alt text-xs ml-1.5 pb-1"></i></span>
+</div>
+
+<h5 class="mt-8">This template is also available for:</h5>
+<ul class="text-sm">
+    {{ $thisCloud := $.Page.Params.cloud.slug }}
+    {{ $thisPage := . }}
+    {{ range $sibling := .CurrentSection.Pages }}
+        {{ $siblingCloud := $sibling.Params.cloud.slug }}
+        {{ if ne $thisCloud $siblingCloud }}
+            <li><a class="text-blue-700" href="{{ .RelPermalink }}">{{ $sibling.Params.cloud.name }}</a></li>
+        {{ end }}
+    {{ end }}
+</ul>

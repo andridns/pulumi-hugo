@@ -1,0 +1,20 @@
+{{ define "main" }}
+    <div class="layout-{{ .Page.Layout }} container mx-auto flex items-start px-4 md:px-0">
+        <div class="md:w-3/12 my-8 sticky-sidebar md:pr-8">
+            <nav><!-- TBD ---></nav>
+        </div>
+        <div class="md:w-6/12 my-8">
+            <header class="container mx-auto">
+                {{ partial "templates/breadcrumb.html" . }}
+                <h1 class="text-5xl mb-0">{{ .Title }}</h1>
+            </header>
+            <section class="container mx-auto my-8">
+                {{ .Content }}
+            </section>
+        </div>
+
+        <div class="md:w-3/12 md:ml-8 mt-28 sticky-sidebar">
+            {{ partial "templates/right-nav.html" . }}
+        </div>
+    </div>
+{{ end }}
